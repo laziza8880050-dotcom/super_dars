@@ -44,7 +44,7 @@ class _SetingDetailState extends State<SetingDetail> {
                 SvgPicture.asset(Assets.icons.smss, height: 20, width: 20),
                 SizedBox(width: 10),
                 Text(
-                  'No name',
+                  GetStorage().read('Email') ?? '',
                   style: GoogleFonts.merriweather(
                     color: AppColors.primary,
                     fontWeight: FontWeight.bold,
@@ -52,7 +52,7 @@ class _SetingDetailState extends State<SetingDetail> {
                   ),
                 ),
                 Text(
-                  GetStorage().read('password')?.toString() ?? '',
+                  GetStorage().read('password') ?? '',
                   style: GoogleFonts.merriweather(
                     color: AppColors.primary,
                     fontWeight: FontWeight.bold,

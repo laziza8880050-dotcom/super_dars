@@ -11,44 +11,44 @@ import 'package:news/src/features/setting/screens/izbr.dart';
 import 'package:news/src/features/setting/screens/seting_detail.dart';
 import 'package:news/src/features/setting/screens/setting_screen.dart';
 
-class AppRouter {
+ class AppRouter {
   static Route? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case AppPages.home:
         return onPage(HomeScreen());
-    }
-    switch (settings.name) {
+
       case AppPages.sign:
         return onPage(SignUp());
-    }
-    switch(settings.name){
-      case AppPages.search :
-      return onPage(Search());
-    }
-     switch(settings.name){
-      case AppPages.detail  :
-      return onPage(DetailScreen(articles: settings.arguments as Article,));
-    }
-     switch(settings.name){
-      case AppPages.izbr :
-      return onPage(Izbr());
-    }
-     switch(settings.name){
-      case AppPages.main :
-      return onPage(MainScreen());
-    }
-    switch(settings.name){
-     case AppPages.settingd:
-      return onPage(SettingScreen());
-   }
-   switch(settings.name){
-    case AppPages.settingdetail:
-    return onPage(SetingDetail());
-   }
 
-    
+      case AppPages.search:
+        return onPage(Search());
 
-    
+      case AppPages.detail:
+        return onPage(
+          DetailScreen(
+            articles: settings.arguments as Article,
+          ),
+        );
+
+      case AppPages.izbr:
+        return onPage(Izbr());
+
+      case AppPages.main:
+        return onPage(MainScreen());
+
+      case AppPages.settingd:
+        return onPage(SettingScreen());
+
+      case AppPages.settingdetail:
+        return onPage(SetingDetail());
+
+      default:
+        return MaterialPageRoute(
+          builder: (_) => Scaffold(
+            body: Center(child: Text("No route defined")),
+          ),
+        );
+    }
   }
 
   static MaterialPageRoute<dynamic> onPage(Widget page) =>

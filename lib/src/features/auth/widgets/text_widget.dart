@@ -17,7 +17,7 @@ final Widget? prefix, suffix;
     return TextFormField(
      obscureText: false,
       validator:validator,
-      
+      controller: controller,
       keyboardType:keybordtype ,
       textInputAction: textInputAction,
      

@@ -9,7 +9,9 @@ import 'package:news/src/features/auth/validators/app_validators.dart';
 import 'package:news/src/features/auth/widgets/poloska.dart';
 import 'package:news/src/features/auth/widgets/text_widget.dart';
 import 'package:news/src/features/home/screens/home_screen.dart';
+
 final box = GetStorage();
+
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
 
@@ -20,7 +22,6 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-final box = GetStorage();
   final GlobalKey<FormState> _formKey = GlobalKey();
 
   @override
@@ -30,14 +31,15 @@ final box = GetStorage();
 
     super.dispose();
   }
+
   @override
-void initState() {
-  super.initState();
- 
-  setState(() {
-    
-  });
-} @override
+  void initState() {
+    super.initState();
+
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Form(
@@ -59,7 +61,6 @@ void initState() {
               TextWidget(
                 labelText: 'Email',
                 validator: AppValidator.email,
-        
                 keybordtype: TextInputType.emailAddress,
                 textInputAction: TextInputAction.next,
                 controller: emailController,
@@ -68,11 +69,10 @@ void initState() {
               TextWidget(
                 labelText: 'Password',
                 validator: AppValidator.password,
-                
-        suffix: Icon(Icons.remove_red_eye),
+                controller: passwordController,
+                suffix: Icon(Icons.remove_red_eye),
                 keybordtype: TextInputType.emailAddress,
                 textInputAction: TextInputAction.send,
-                controller: passwordController,
               ),
               SizedBox(height: 35),
               Padding(
@@ -84,13 +84,12 @@ void initState() {
                   ),
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                       await box.write('Email', emailController.text);
-    await box.write('password', passwordController.text);
-    
+                      await GetStorage().write('Email', emailController.text);
+                      await GetStorage().write('password', passwordController.text);
 
                       print('saved email ${GetStorage().read('Email')}');
-                      
-                        Navigator.pushNamed(context, AppPages.home);
+
+                      Navigator.pushNamed(context, AppPages.home);
                     }
                   },
                   child: Text(
@@ -116,18 +115,25 @@ void initState() {
                       color: AppColors.primary,
                     ),
                   ),
-                  SizedBox(width: 5,),
-                  Poloska()
+                  SizedBox(width: 5),
+                  Poloska(),
                 ],
               ),
-              SizedBox(height: 50,),
-              Image.asset(Assets.images.vseIconki.path,width: double.infinity,height: 48,),
-              SizedBox(height: 62,),
-              Text('By signing up to News24 you are accepting our \n                            Terms & Conditions', style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.primary,
-                    ),)
+              SizedBox(height: 50),
+              Image.asset(
+                Assets.images.vseIconki.path,
+                width: double.infinity,
+                height: 48,
+              ),
+              SizedBox(height: 62),
+              Text(
+                'By signing up to News24 you are accepting our \n                            Terms & Conditions',
+                style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.primary,
+                ),
+              ),
             ],
           ),
         ),
